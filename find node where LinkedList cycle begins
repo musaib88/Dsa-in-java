@@ -1,0 +1,42 @@
+ q (142)Given the head of a linked list, return the node where the cycle begins. If there is no cycle, return null.
+ 
+ 
+ 
+ sol()
+ 
+ /**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode detectCycle(ListNode head) {
+        ListNode slow=head;
+        ListNode fast=head;
+        ListNode startNode=head;
+        ListNode currentNode=null;
+        while(fast!=null&&fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+            if(slow==fast){
+                currentNode=slow;
+                break;
+            }
+                
+        }
+        if(fast==null || fast.next==null)
+        return null;
+        while(currentNode!=startNode){
+            currentNode = currentNode.next;
+            startNode=startNode.next;
+        }
+        return startNode;
+
+    }
+}
